@@ -6,7 +6,8 @@ use App\Http\Controllers\GatoController;
 use App\Http\Controllers\PerroController;
 use App\Http\Controllers\FotoController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController; // <--- Importante añadir esta línea
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactoController;
 use Illuminate\Support\Facades\Route;
 
 // --- ZONA PÚBLICA ---
@@ -45,6 +46,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Rutas de Gestión de Solicitudes de Adopción
+    Route::get('/admin/solicitudes', [ContactoController::class, 'index'])->name('admin.solicitudes.index');
+    Route::patch('/admin/solicitudes/{solicitud}/leer', [ContactoController::class, 'markAsRead'])->name('admin.solicitudes.read');
+    Route::delete('/admin/solicitudes/{solicitud}', [ContactoController::class, 'destroy'])->name('admin.solicitudes.destroy');
 });
 
 require __DIR__.'/auth.php';

@@ -83,6 +83,25 @@
                 </div>
             </a>
 
+            <a href="{{ route('admin.solicitudes.index') }}" class="group relative overflow-hidden bg-white p-10 rounded-[2.5rem] border border-cremaClaro shadow-sm hover:border-coral transition-all">
+                @if($solicitudesPendientes > 0)
+                    <div class="absolute top-6 right-6 bg-coral text-white w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-lg animate-bounce">
+                        {{ $solicitudesPendientes }}
+                    </div>
+                @endif
+                
+                <div class="relative z-10">
+                    <h3 class="text-3xl font-serif font-bold text-chocolate mb-3">Solicitudes</h3>
+                    <p class="text-marron/70 text-sm mb-8 max-w-xs leading-relaxed">
+                        Revisa y gestiona los mensajes de los ciudadanos interesados en la adopción.
+                    </p>
+                    <div class="inline-flex items-center gap-3 bg-coral px-6 py-3 rounded-xl text-white font-bold text-xs uppercase tracking-widest group-hover:bg-chocolate transition-colors shadow-lg shadow-coral/20">
+                        Ver mensajes
+                        <span>→</span>
+                    </div>
+                </div>
+            </a>
+
             @if(Auth::user()->isAdmin())
                 <a href="{{ route('users.create') }}" class="group relative overflow-hidden bg-white p-10 rounded-[2.5rem] border border-[#F0DEC4] shadow-sm hover:border-[#7A4F2D] transition-all">
                     <div class="relative z-10">
