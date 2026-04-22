@@ -15,10 +15,16 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-// Rutas para ciudadanos (Públicas)
+// Rutas para ciudadanos (Gatos)
 Route::get('/adopcion/gatos', [ColoniaController::class, 'publicIndex'])->name('public.colonias');
 Route::get('/adopcion/gatos/colonia/{colonia}', [ColoniaController::class, 'publicShow'])->name('public.colonias.show');
+
+// Rutas para ciudadanos (Perros)
+Route::get('/adopcion/perros', [PerroController::class, 'publicIndex'])->name('public.perros');
+
+//Ruta de contacto para adopción
 Route::post('/contacto-adopcion', [App\Http\Controllers\ContactoController::class, 'store'])->name('contacto.store');
+
 
 
 // --- ZONA PRIVADA (AYUNTAMIENTO) ---

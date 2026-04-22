@@ -152,4 +152,13 @@ class PerroController extends Controller
         return redirect()->route('perros.index')
             ->with('success', 'Registro canino eliminado del sistema.');
     }
+
+    //MOstrar los perros a los usuarios públicos, solo los disponibles para adopción
+    public function publicIndex()
+    {
+        // Obtenemos solo los perros disponibles para adopción
+        $perros = Perro::where('estado', 'disponible')->with('fotos')->get();
+        
+        return view('public.perros.index', compact('perros'));
+    }
 }
