@@ -14,7 +14,6 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        
         <div class="bg-white p-6 rounded-3xl border border-[#F0DEC4] shadow-sm flex items-center gap-5 hover:shadow-md transition-shadow">
             <div class="p-4 bg-[#F5E6D3] rounded-2xl text-[#7A4F2D]">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-width="2"/></svg>
@@ -69,7 +68,7 @@
 
             <a href="{{ route('perros.index') }}" class="group relative overflow-hidden bg-white p-10 rounded-[2.5rem] border border-[#F0DEC4] shadow-sm hover:border-[#D94F3D] transition-all">
                 <div class="relative z-10">
-                    <h3 class="text-3xl font-serif font-bold text-[#4A2810] mb-3">Perros en Adopción</h3>
+                    <h3 class="text-3xl font-serif font-bold text-[#4A2810] mb-3">Perros</h3>
                     <p class="text-[#7A4F2D]/70 text-sm mb-8 max-w-xs leading-relaxed">
                         Administración del censo de perros, gestión de fichas para el portal público y seguimiento de adopciones.
                     </p>
@@ -83,22 +82,44 @@
                 </div>
             </a>
 
-            <a href="{{ route('admin.solicitudes.index') }}" class="group relative overflow-hidden bg-white p-10 rounded-[2.5rem] border border-cremaClaro shadow-sm hover:border-coral transition-all">
+            <a href="{{ route('admin.solicitudes.index') }}" class="group relative overflow-hidden bg-white p-10 rounded-[2.5rem] border border-[#F0DEC4] shadow-sm hover:border-[#E8937A] transition-all">
                 @if($solicitudesPendientes > 0)
-                    <div class="absolute top-6 right-6 bg-coral text-white w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-lg animate-bounce">
+                    <div class="absolute top-6 right-6 bg-[#D94F3D] text-white w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-lg animate-bounce z-20">
                         {{ $solicitudesPendientes }}
                     </div>
                 @endif
                 
                 <div class="relative z-10">
-                    <h3 class="text-3xl font-serif font-bold text-chocolate mb-3">Solicitudes</h3>
-                    <p class="text-marron/70 text-sm mb-8 max-w-xs leading-relaxed">
-                        Revisa y gestiona los mensajes de los ciudadanos interesados en la adopción.
+                    <h3 class="text-3xl font-serif font-bold text-[#4A2810] mb-3">Solicitudes Adopción</h3>
+                    <p class="text-[#7A4F2D]/70 text-sm mb-8 max-w-xs leading-relaxed">
+                        Gestiona los interesados en adoptar animales específicos del centro.
                     </p>
-                    <div class="inline-flex items-center gap-3 bg-coral px-6 py-3 rounded-xl text-white font-bold text-xs uppercase tracking-widest group-hover:bg-chocolate transition-colors shadow-lg shadow-coral/20">
-                        Ver mensajes
+                    <div class="inline-flex items-center gap-3 bg-[#E8937A] px-6 py-3 rounded-xl text-white font-bold text-xs uppercase tracking-widest group-hover:bg-[#D94F3D] transition-colors shadow-lg">
+                        Ver Solicitudes
                         <span>→</span>
                     </div>
+                </div>
+            </a>
+
+            <a href="{{ route('admin.mensajes.index') }}" class="group relative overflow-hidden bg-white p-10 rounded-[2.5rem] border border-[#F0DEC4] shadow-sm hover:border-blue-400 transition-all">
+                @if($mensajesGeneralesPendientes > 0)
+                    <div class="absolute top-6 right-6 bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-lg animate-pulse z-20">
+                        {{ $mensajesGeneralesPendientes }}
+                    </div>
+                @endif
+                
+                <div class="relative z-10">
+                    <h3 class="text-3xl font-serif font-bold text-[#4A2810] mb-3">Buzón General</h3>
+                    <p class="text-[#7A4F2D]/70 text-sm mb-8 max-w-xs leading-relaxed">
+                        Consultas ciudadanas, voluntarios y avisos generales del ayuntamiento.
+                    </p>
+                    <div class="inline-flex items-center gap-3 bg-blue-500 px-6 py-3 rounded-xl text-white font-bold text-xs uppercase tracking-widest group-hover:bg-[#4A2810] transition-colors shadow-lg shadow-blue-500/20">
+                        Abrir Buzón
+                        <span>✉</span>
+                    </div>
+                </div>
+                <div class="absolute right-[-10px] bottom-[-10px] text-blue-500 opacity-5 group-hover:scale-110 transition-transform">
+                    <svg class="w-40 h-40" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                 </div>
             </a>
 
@@ -107,21 +128,17 @@
                     <div class="relative z-10">
                         <h3 class="text-3xl font-serif font-bold text-[#4A2810] mb-3">Usuarios</h3>
                         <p class="text-[#7A4F2D]/70 text-sm mb-8 max-w-xs leading-relaxed">
-                            Administración de accesos. Crea nuevas cuentas para el personal del ayuntamiento o gestores.
+                            Administración de accesos. Crea nuevas cuentas para el personal del ayuntamiento.
                         </p>
                         <div class="inline-flex items-center gap-3 bg-[#4A2810] px-6 py-3 rounded-xl text-white font-bold text-xs uppercase tracking-widest group-hover:bg-[#D94F3D] transition-colors shadow-lg">
                             Añadir Usuario
                             <span>+</span>
                         </div>
                     </div>
-                    <div class="absolute right-[-20px] bottom-[-20px] text-[#4A2810] opacity-5 group-hover:rotate-12 transition-transform duration-500">
-                        <svg class="w-48 h-48 fill-current" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                    </div>
                 </a>
             @endif
 
         </div>
     </div>
-
 </div>
 @endsection
