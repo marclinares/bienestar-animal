@@ -40,7 +40,7 @@
                         <div class="bg-crema p-3 rounded-xl text-xl">📍</div>
                         <div>
                             <p class="font-bold text-chocolate text-sm uppercase tracking-tighter">Dirección</p>
-                            <p class="text-marron/70 text-xs mt-1">Calle de la Protección, 12<br>CP 28000</p>
+                            <p class="text-marron/70 text-xs mt-1">Calle de la Protección, 12<br>CP 46440</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4 border-t border-cremaClaro pt-6">
