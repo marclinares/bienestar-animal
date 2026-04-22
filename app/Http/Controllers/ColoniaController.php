@@ -86,4 +86,29 @@ class ColoniaController extends Controller
         return redirect()->route('colonias.index')
             ->with('success', 'Colonia eliminada');
     }
+
+
+    /**
+     * Muestra el listado público de colonias para los ciudadanos.
+     */
+    public function publicIndex()
+    {
+        // Obtenemos las colonias y contamos cuántos gatos tiene cada una
+        $colonias = \App\Models\Colonia::withCount('gatos')->get();
+        
+        return view('public.colonias.index', compact('colonias'));
+    }
+
+    /**
+     * Muestra los gatos de una colonia específica al ciudadano.
+     */
+    public function publicShow(\App\Models\Colonia $colonia)
+    {
+        // Cargamos los gatos de esa colonia con sus fotos para la galería
+        $colonia->load(['gatos' => function($query) {
+            $query->where('estado', 'disponible')->with('fotos');
+        }]);
+
+        return view('public.colonias.show', compact('colonia'));
+    }
 }
