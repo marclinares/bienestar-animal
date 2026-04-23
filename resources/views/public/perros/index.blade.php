@@ -6,16 +6,15 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Estilos para la expansión de texto */
         .description-container {
             transition: all 0.5s ease-in-out;
-            max-height: 4.5rem; /* Altura de unas 3 líneas */
+            max-height: 4.5rem; 
             position: relative;
             overflow: hidden;
         }
         
         .description-container.expanded {
-            max-height: 1000px; /* Suficiente para cualquier descripción */
+            max-height: 1000px; 
         }
 
         .fade-overlay {
@@ -107,7 +106,8 @@
                         <svg class="w-3 h-3 transition-transform" id="icon-desc-{{ $perro->id }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
                 @else
-                    <div class="mb-6"></div> @endif
+                    <div class="mb-6"></div> 
+                @endif
                 
                 <div class="mt-auto">
                     <button onclick="openModal('{{ $perro->nombre }}')" class="w-full bg-orange-600 hover:bg-chocolate text-white py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all shadow-lg shadow-orange-200">
@@ -120,10 +120,38 @@
     </div>
 
     <div id="contactModal" class="fixed inset-0 bg-chocolate/60 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-4">
+        <div class="bg-crema rounded-[2.5rem] w-full max-w-lg p-10 relative animate-fade-in shadow-2xl border-4 border-white">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-marron hover:rotate-90 transition-transform text-xl">✕</button>
+            
+            <h3 class="text-2xl font-serif font-bold text-chocolate mb-2">Interés en <span id="animalNombre" class="text-orange-600"></span></h3>
+            <p class="text-marron/70 text-sm mb-8 italic">Déjanos tus datos y el equipo del Ayuntamiento se pondrá en contacto contigo.</p>
+            
+            <form action="{{ route('contacto.store') }}" method="POST" class="space-y-4">
+                @csrf
+                <input type="hidden" name="interesado_en" id="hiddenAnimalNombre">
+                <input type="hidden" name="especie" value="perro">
+                
+                <input type="text" name="nombre" placeholder="Tu nombre" class="w-full bg-white border-0 rounded-xl p-4 focus:ring-2 focus:ring-orange-500 outline-none text-sm shadow-sm" required>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="email" name="email" placeholder="Tu email" class="w-full bg-white border-0 rounded-xl p-4 focus:ring-2 focus:ring-orange-500 outline-none text-sm shadow-sm" required>
+                    <input type="text" name="telefono" placeholder="Teléfono (opcional)" class="w-full bg-white border-0 rounded-xl p-4 focus:ring-2 focus:ring-orange-500 outline-none text-sm shadow-sm">
+                </div>
+
+                <textarea name="mensaje" placeholder="¿Por qué quieres adoptar?" rows="3" class="w-full bg-white border-0 rounded-xl p-4 focus:ring-2 focus:ring-orange-500 outline-none text-sm mt-2 shadow-sm" required></textarea>
+                
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-chocolate text-cremaClaro py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-orange-600 transition-all shadow-xl">
+                        Enviar solicitud
+                    </button>
+                </div>
+            </form>
         </div>
+    </div>
 
     <script>
         function openModal(nombre) {
+            // Buscamos los elementos dentro del modal y les asignamos el nombre
             document.getElementById('animalNombre').innerText = nombre;
             document.getElementById('hiddenAnimalNombre').value = nombre;
             document.getElementById('contactModal').classList.remove('hidden');
@@ -138,7 +166,6 @@
             carousel.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
         }
 
-        // Nueva función para expandir/colapsar descripción
         function toggleDescription(perroId) {
             const container = document.getElementById('desc-container-' + perroId);
             const btn = document.getElementById('btn-desc-' + perroId).querySelector('span');
